@@ -1,3 +1,2 @@
 test
-<<<<<<< HEAD
 test 2nd line
