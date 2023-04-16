@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, session, flash
+from flask  import Flask, request, redirect, render_template, session, flash
 from models import dbConnect
 from util.user import User
 from datetime import timedelta
@@ -26,12 +26,12 @@ def userSignup():
 
     pattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
 
-    if name == '' or email =='' or password1 == '' or password2 == '':
-        flash('空のフォームがあるようです')
+    if name == '' or email == '' or password1 == '' or password2 == '':
+        flash('入力されていないところがあります。')
     elif password1 != password2:
-        flash('二つのパスワードの値が違っています')
+        flash('２つのパスワードが一致していません。')
     elif re.match(pattern, email) is None:
-        flash('正しいメールアドレスの形式ではありません')
+        flash('メールアドレスの形式が正しくありません。')
     else:
         uid = uuid.uuid4()
         password = hashlib.sha256(password1.encode('utf-8')).hexdigest()
@@ -39,7 +39,7 @@ def userSignup():
         DBuser = dbConnect.getUser(email)
 
         if DBuser != None:
-            flash('既に登録されているようです')
+            flash('既に登録されています。')
         else:
             dbConnect.createUser(user)
             UserId = str(uid)
@@ -59,17 +59,17 @@ def userLogin():
     password = request.form.get('password')
 
     if email =='' or password == '':
-        flash('空のフォームがあるようです')
+        flash('入力されていないところがあります。')
     else:
         user = dbConnect.getUser(email)
         if user is None:
-            flash('このユーザーは存在しません')
+            flash('このユーザーは存在しません。')
         else:
             hashPassword = hashlib.sha256(password.encode('utf-8')).hexdigest()
             if hashPassword != user["password"]:
-                flash('パスワードが間違っています！')
+                flash('パスワードがちがいます。')
             else:
-                session['uid'] = user["uid"]
+                session['uid'] = user['uid']
                 return redirect('/')
     return redirect('/login')
 
@@ -93,7 +93,6 @@ def index():
 @app.route('/', methods=['POST'])
 def add_channel():
     uid = session.get('uid')
-    print(uid)
     if uid is None:
         return redirect('/login')
     channel_name = request.form.get('channel-title')
@@ -103,7 +102,7 @@ def add_channel():
         dbConnect.addChannel(uid, channel_name, channel_description)
         return redirect('/')
     else:
-        error = '既に同じチャンネルが存在しています'
+        error = '同じ名前のチャンネルが存在します。'
         return render_template('error/error.html', error_message=error)
 
 
@@ -114,10 +113,10 @@ def update_channel():
         return redirect('/login')
 
     cid = request.form.get('cid')
-    channel_name = request.form.get('channel-title')
+    channel_name = request.form.get('channel-titile')
     channel_description = request.form.get('channel-description')
 
-    res = dbConnect.updateChannel(uid, channel_name, channel_description, cid)
+    dbConnect.updateChannel(uid, channel_name, channel_description, cid)
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
@@ -126,22 +125,20 @@ def update_channel():
 @app.route('/delete/<cid>')
 def delete_channel(cid):
     uid = session.get("uid")
-    print(uid)
     if uid is None:
         return redirect('/login')
     else:
-        channel = dbConnect.getChannelById(cid)
-        print(channel["uid"] == uid)
+        channel =dbConnect.getChannelById(cid)
         if channel["uid"] != uid:
-            flash('チャンネルは作成者のみ削除可能です')
-            return redirect ('/')
+            flash('チャンネルは作成者のみ削除可能です。')
+            return redirect('/')
         else:
             dbConnect.deleteChannel(cid)
             channels = dbConnect.getChannelAll()
             return render_template('index.html', channels=channels, uid=uid)
 
 
-# uidもmessageと一緒に返す
+
 @app.route('/detail/<cid>')
 def detail(cid):
     uid = session.get("uid")
@@ -151,14 +148,7 @@ def detail(cid):
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
-
-
-@app.route('/message', methods=['GET'])
-def show_message():
-    cid = 1
-    messages = dbConnect.getMessageAll(cid)
-    return render_template('hello.html', messages=messages)
+    return render_template('detail.html', messages=messages,channel=channel, uid=uid)
 
 
 @app.route('/message', methods=['POST'])
@@ -166,9 +156,9 @@ def add_message():
     uid = session.get("uid")
     if uid is None:
         return redirect('/login')
-
+    
     message = request.form.get('message')
-    channel_id = request.form.get('channel_id')
+    channel_id =request.form.get('channel_id')
 
     if message:
         dbConnect.createMessage(uid, channel_id, message)
@@ -187,7 +177,6 @@ def delete_message():
 
     message_id = request.form.get('message_id')
     cid = request.form.get('channel_id')
-    print(message_id)
     if message_id:
         dbConnect.deleteMessage(message_id)
 
@@ -209,3 +198,4 @@ def show_error500(error):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
