@@ -1,5 +1,3 @@
 test
 <<<<<<< HEAD
 test 2nd line
-=======
->>>>>>> parent of e6745d9 ([add]test 3rd line)
