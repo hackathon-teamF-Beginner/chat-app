@@ -1,4 +1,5 @@
 import pymysql
+import datetime
 from util.DB import DB
 
 class dbConnect:
@@ -148,7 +149,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT id,u.uid, user_name, message FROM messages AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
+            sql = "SELECT id,u.uid, user_name, message, contri_time FROM messages AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
             cur.execute(sql, (cid))
             messages = cur.fetchall()
             return messages
@@ -163,8 +164,9 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO messages(uid, cid, message) VALUES(%s, %s, %s)"
-            cur.execute(sql, (uid, cid, message))
+            timestamp = datetime.datetime.now().strftime("%-m/%d %-H:%M")
+            sql = "INSERT INTO messages(uid, cid, message, contri_time) VALUES(%s, %s, %s, %s)"
+            cur.execute(sql, (uid, cid, message, timestamp))
             conn.commit()
         except Exception as e:
             print(e + 'が発生しています')
@@ -176,7 +178,6 @@ class dbConnect:
     def deleteMessage(message_id):
         try:
             conn = DB.getConnection()
-            print(message_id)
             cur = conn.cursor()
             sql = "DELETE FROM messages WHERE id=%s;"
             cur.execute(sql, (message_id))
@@ -186,4 +187,7 @@ class dbConnect:
             return None
         finally:
             cur.close()
+    
+
+            
     
