@@ -5,7 +5,7 @@ SET GLOBAL validate_password.policy=LOW;
 
 CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'testuser';
 CREATE DATABASE chatapp;
-USE chatapp
+USE chatapp;
 GRANT ALL PRIVILEGES ON chatapp.* TO 'testuser'@'localhost';
 
 
