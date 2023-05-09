@@ -33,16 +33,19 @@ def userSignup():
     elif re.match(pattern, email) is None:
         flash('メールアドレスの形式が正しくありません。')
     else:
-        uid = uuid.uuid4()
+        id = uuid.uuid4()
         password = hashlib.sha256(password1.encode('utf-8')).hexdigest()
-        user = User(uid, name, email, password)
-        DBuser = dbConnect.getUser(email)
+        user = User(id, name, email, password)
+        DBuserEmail = dbConnect.getUser(email)
+        DBuserId = dbConnect.getUserId(name)
 
-        if DBuser != None:
-            flash('既に登録されています。')
+        if DBuserId != None:
+            flash("他のユーザーが使用している名前です。")
+        elif DBuserEmail != None:
+            flash('既に登録されたEmailアドレスです。')
         else:
             dbConnect.createUser(user)
-            UserId = str(uid)
+            UserId = str(id)
             session['uid'] = UserId
             return redirect('/')
     return redirect('/signup')
@@ -69,7 +72,7 @@ def userLogin():
             if hashPassword != user["password"]:
                 flash('パスワードがちがいます。')
             else:
-                session['uid'] = user['uid']
+                session['uid'] = user['id']
                 return redirect('/')
     return redirect('/login')
 

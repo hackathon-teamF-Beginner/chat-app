@@ -8,74 +8,50 @@ CREATE DATABASE chatapp;
 USE chatapp;
 GRANT ALL PRIVILEGES ON chatapp.* TO 'testuser'@'localhost';
 
-
-
-CREATE TABLE users (
-    uid varchar(255) PRIMARY KEY,
-    user_name varchar(255) UNIQUE NOT NULL,
-    email varchar(255) UNIQUE NOT NULL,
-    password varchar(255) NOT NULL
-);
-
-
-CREATE TABLE channels (
-    id serial PRIMARY KEY,
-    uid varchar(255) REFERENCES users(uid),
-    name varchar(255) UNIQUE NOT NULL,
-    abstract varchar(255)
-);
-
-CREATE TABLE messages (
-    id serial PRIMARY KEY,
-    uid varchar(255) REFERENCES users(uid),
-    cid integer REFERENCES channels(id) ON DELETE CASCADE,
-    message text,
-    contri_time text,
-    created_at timestamp not null default current_timestamp
-);
-
 CREATE TABLE M_USER (
     id varchar(255) PRIMARY KEY,
     user_name varchar(100) UNIQUE NOT NULL,
     email varchar(255) UNIQUE NOT NULL,
-    password varchar(30) NOT NULL
+    password varchar(255) NOT NULL
 );
 
 CREATE TABLE T_CHANNEL (
     id serial PRIMARY KEY,
     uid varchar(255) REFERENCES M_USER(id),
     name varchar(255) UNIQUE NOT NULL,
-    abstract varchar(255),
-    passport text
+    abstract varchar(255)
 );
 
-CREATE TABLE T_USER_MESSAGE (
+CREATE TABLE T_USER_CHANNEL (
     id serial PRIMARY KEY,
     uid varchar(255) REFERENCES M_USER(id),
     cid integer REFERENCES T_CHANNEL(id) ON DELETE CASCADE,
-    mid varchar(255) REFERENCES T_MESSAGE(id)
+    delete_privilege boolean
 );
 
 CREATE TABLE T_MESSAGE (
     id serial PRIMARY KEY,
+    uid varchar(255) REFERENCES M_USER(id),
+    cid integer REFERENCES T_CHANNEL(id) ON DELETE CASCADE,
     message_contents text,
-    send_at text,
-    rid varchar(255) REFERENCES T_REACTION(id)
+    send_at text
 );
 
 CREATE TABLE T_REACTION (
     id serial PRIMARY KEY,
+    mid integer REFERENCES T_MESSAGE(id) ON DELETE CASCADE,
+    uid varchar(255) REFERENCES M_USER(id),
     reaction_code varchar(255)
 );
 
 CREATE TABLE M_REACTION (
-    reaction_code serial PRIMARY KEY,
+    id serial PRIMARY KEY,
     reaction_name text,
-    thumbnail_path text
+    file_path text
 );
 
-INSERT INTO users(uid, user_name, email, password)VALUES('970af84c-dd40-47ff-af23-282b72b7cca8','テスト','test@gmail.com','37268335dd6931045bdcdf92623ff819a64244b53d0e746d438797349d4da578');
-INSERT INTO channels(id, uid, name, abstract)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8','秘密の部屋','最初からある部屋です。');
-INSERT INTO messages(id, uid, cid, message)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'どんどん送信してください');
-INSERT INTO messages(id, uid, cid, message)VALUES(2, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'テスト送信１');
-INSERT INTO messages(id, uid, cid, message)VALUES(3, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'テスト送信２');
+INSERT INTO M_USER(id, user_name, email, password)VALUES('970af84c-dd40-47ff-af23-282b72b7cca8','テスト','test@gmail.com','37268335dd6931045bdcdf92623ff819a64244b53d0e746d438797349d4da578');
+INSERT INTO T_CHANNEL (id, uid, name, abstract)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8','秘密の部屋','最初からある部屋です。');
+INSERT INTO T_MESSAGE(id, uid, cid, message_contents)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'どんどん送信してください');
+INSERT INTO T_MESSAGE(id, uid, cid, message_contents)VALUES(2, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'テスト送信１');
+INSERT INTO T_MESSAGE(id, uid, cid, message_contents)VALUES(3, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'テスト送信２');
