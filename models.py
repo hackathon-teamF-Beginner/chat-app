@@ -8,6 +8,7 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "INSERT INTO users (uid, user_name, email, password) VALUES (%s, %s, %s, %s);"
+            sql1 = "INSERT INTO M_USER (id, user_name, email, password) VALUES (%s, %s, %s, %s);"
             cur.execute(sql, (user.uid, user.name, user.email, user.password))
             conn.commit()
         except Exception as e:
@@ -132,7 +133,7 @@ class dbConnect:
 
     #deleteチャンネル関数
     def deleteChannel(cid):
-        try: 
+        try:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "DELETE FROM channels WHERE id=%s;"
