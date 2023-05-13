@@ -8,7 +8,7 @@ class DB:
             db="chatapp",
             user="testuser",
             password="testuser",
-            charset="utf8",
+            charset="utf8mb4",
             cursorclass=pymysql.cursors.DictCursor
         )
             return conn

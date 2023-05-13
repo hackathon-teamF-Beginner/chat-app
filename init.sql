@@ -4,7 +4,7 @@ DROP USER if exists 'testuser'@'localhost';
 SET GLOBAL validate_password.policy=LOW;
 
 CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'testuser';
-CREATE DATABASE chatapp;
+CREATE DATABASE chatapp DEFAULT CHARACTER SET utf8mb4;
 USE chatapp;
 GRANT ALL PRIVILEGES ON chatapp.* TO 'testuser'@'localhost';
 
