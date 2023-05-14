@@ -25,10 +25,20 @@
           {% for message in messages %}
             {% if message.uid == uid %}
               <div class="my-messages">
-                <p class="box box-right">{{ message.message_contents }}</p>
-                <p class="user-name">{{ message.user_name }}</p>
-                <p class="user-name">{{ message.send_at }}</p>
-                <form action="/delete_message" method="POST">
+                <p class="my-user-name">{{ message.user_name }}</p>
+                <div class="my-messages-and-trash">
+                  <p class="box box-right">{{ message.message_contents }}</p>
+                  <form action="/reaction" method="POST">
+                  <input type="hidden" value="{{ channel.id }}" name="channel_id" />
+                  <button
+                  class="delete-message-btn"
+                  name="message_id"
+                  value="{{ message.id }}"
+                  >
+                  <ion-icon name="happy-outline"></ion-icon>
+                  </button>
+                  </form>
+                  <form action="/delete_message" method="POST">
                   <input type="hidden" value="{{ channel.id }}" name="channel_id" />
                   <button
                     class="delete-message-btn"
@@ -37,14 +47,15 @@
                   >
                     <ion-icon name="trash-bin-outline"></ion-icon>
                   </button>
-
-                </form>
+                  </form>
+                </div>
+                <p class="my-send-time">{{ message.send_at }}</p>
               </div>
             {% else %}
               <div class="messages">
                 <p class="user-name">{{ message.user_name }}</p>
                 <p class="box box-left">{{ message.message_contents }}</p>
-                <p class="user-name">{{ message.send_at }}</p>
+                <p class="send-time">{{ message.send_at }}</p>
               </div>
             {% endif %}
           {% endfor %}

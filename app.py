@@ -1,4 +1,4 @@
-from flask  import Flask, request, redirect, render_template, session, flash
+from flask  import Flask, request, redirect, render_template, session, flash, url_for
 from models import dbConnect
 from util.user import User
 from datetime import timedelta
@@ -168,8 +168,26 @@ def add_message():
 
     channel = dbConnect.getChannelById(channel_id)
     messages = dbConnect.getMessageAll(channel_id)
+    
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+
+@app.route('/reaction', methods=['POST'])
+def reaction():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+    
+    message = request.form.get('message')
+    channel_id =request.form.get('channel_id')
+
+    if message:
+        dbConnect.createMessage(uid, channel_id, message)
+
+    channel = dbConnect.getChannelById(channel_id)
+    messages = dbConnect.getMessageAll(channel_id)
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+
 
 
 @app.route('/delete_message', methods=['POST'])

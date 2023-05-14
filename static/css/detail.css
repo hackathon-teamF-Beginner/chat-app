@@ -54,15 +54,37 @@
   flex-direction: column;
 }
 
+.my-user-name {
+  font-size: 8px;
+  color: var(--wood);
+  margin-left: auto;
+  margin-right: 20px;
+}
+.my-send-time {
+  font-size: 8px;
+  color: var(--wood);
+  margin-left: auto;
+  margin-right: 20px;
+}
 .user-name {
+  font-size: 8px;
+  color: var(--wood);
+}
+.send-time {
   font-size: 8px;
   color: var(--wood);
 }
 
 .my-messages {
   display: flex;
+  flex-direction: column;
+  margin-right: 10px;
 }
 
+.my-messages-and-trash {
+  display: flex;
+  flex-direction: row;
+}
 .delete-message-btn {
   background-color: var(--carbon);
   height: 40px;
