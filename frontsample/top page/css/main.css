@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+body{
+background-image: url(../images/syoutenmaku.png);
+font-size: 16px;
+font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
+color: #333333;
+}
+div  {
+  width: 1240px;
+  margin: 0 auto 50px;
+  text-align: center;
+  margin-bottom: 20px;
+  border-radius: 50%;
+}

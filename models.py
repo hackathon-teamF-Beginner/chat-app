@@ -164,7 +164,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            timestamp = datetime.datetime.now().strftime("%-m/%d %-H:%M")
+            timestamp = datetime.datetime.now()
             sql = "INSERT INTO messages(uid, cid, message, contri_time) VALUES(%s, %s, %s, %s)"
             cur.execute(sql, (uid, cid, message, timestamp))
             conn.commit()

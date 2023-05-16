@@ -27,6 +27,7 @@
               <div class="my-messages">
                 <p class="box box-right">{{ message.message }}</p>
                 <p class="user-name">{{ message.user_name }}</p>
+                <p class="user-name">{{ message.contri_time }}</p>
                 <form action="/delete_message" method="POST">
                   <input type="hidden" value="{{ channel.id }}" name="channel_id" />
                   <button
