@@ -55,3 +55,11 @@ INSERT INTO T_CHANNEL (id, uid, name, abstract)VALUES(1, '970af84c-dd40-47ff-af2
 INSERT INTO T_MESSAGE(id, uid, cid, message_contents)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'どんどん送信してください');
 INSERT INTO T_MESSAGE(id, uid, cid, message_contents)VALUES(2, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'テスト送信１');
 INSERT INTO T_MESSAGE(id, uid, cid, message_contents)VALUES(3, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'テスト送信２');
+
+INSERT INTO M_REACTION(id, reaction_name, file_path)VALUES(1, 'good', '../static/reaction_icons/good.png');
+INSERT INTO M_REACTION(id, reaction_name, file_path)VALUES(2, 'look', '../static/reaction_icons/look.png');
+INSERT INTO M_REACTION(id, reaction_name, file_path)VALUES(3, 'love', '../static/reaction_icons/love.png');
+INSERT INTO M_REACTION(id, reaction_name, file_path)VALUES(4, 'pray', '../static/reaction_icons/pray.png');
+INSERT INTO M_REACTION(id, reaction_name, file_path)VALUES(5, 'smile', '../static/reaction_icons/smile.png');
+
+

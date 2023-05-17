@@ -149,7 +149,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT TM.id, MU.id as uid, user_name, message_contents, send_at FROM T_MESSAGE AS TM INNER JOIN M_USER AS MU ON TM.uid = MU.id WHERE cid = %s;"
+            sql = "SELECT TM.id, MU.id as uid, user_name, message_contents, send_at, file_path FROM M_USER AS MU INNER JOIN T_MESSAGE AS TM ON MU.id = TM.uid LEFT JOIN T_REACTION AS TR ON TM.id = TR.mid LEFT JOIN M_REACTION AS MR ON TR.reaction_code = MR.id WHERE cid=%s;"
             cur.execute(sql, (cid))
             messages = cur.fetchall()
             return messages
@@ -175,12 +175,40 @@ class dbConnect:
             cur.close()
 
 
-    def deleteMessage(message_id):
+    def addReaction(mid, uid, reaction_code):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO T_REACTION(mid, uid, reaction_code) VALUES(%s, %s, %s)"
+            cur.execute(sql, (mid, uid, reaction_code))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
+
+
+    def getReactionAll(mid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM T_REACTION as TM INNER JOIN M_REACTION as MR ON TM.reaction_code = MR.id WHERE mid = %s;"
+            cur.execute(sql, (mid))
+            img_paths = cur.fetchone()
+            return img_paths
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
+
+    def deleteMessage(mid):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "DELETE FROM T_MESSAGE WHERE id=%s;"
-            cur.execute(sql, (message_id))
+            cur.execute(sql, (mid))
             conn.commit()
         except Exception as e:
             print(e + 'が発生しています')

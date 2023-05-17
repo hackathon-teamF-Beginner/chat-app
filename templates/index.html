@@ -13,14 +13,14 @@
       </div>
       <div class="pagination-container">
         <p id="prev"><</li>
-        <ul class="pagination"></ul>
-        <p id="next">></p>
+          <ul class="pagination"></ul>
+          <p id="next">></p>
+        </div>
+        <ul class="channel-box"></ul>
+        {% include 'modal/add-channel.html' %}
+        {% include 'modal/delete-confirmation.html' %}
       </div>
-      <ul class="channel-box"></ul>
-      {% include 'modal/add-channel.html' %}
-      {% include 'modal/delete-confirmation.html' %}
     </div>
-  </div>
 {% endblock %}
 {% block script %}
   <script type="text/javascript">

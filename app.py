@@ -151,7 +151,7 @@ def detail(cid):
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
 
-    return render_template('detail.html', messages=messages,channel=channel, uid=uid)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
 
 
 @app.route('/message', methods=['POST'])
@@ -169,6 +169,7 @@ def add_message():
     channel = dbConnect.getChannelById(channel_id)
     messages = dbConnect.getMessageAll(channel_id)
     
+    
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
 
 @app.route('/reaction', methods=['POST'])
@@ -177,11 +178,12 @@ def reaction():
     if uid is None:
         return redirect('/login')
     
-    message = request.form.get('message')
+    mid = request.form.get('message_id')
+    reaction_code = request.form.get('reaction_code')
     channel_id =request.form.get('channel_id')
-
-    if message:
-        dbConnect.createMessage(uid, channel_id, message)
+    
+    if mid:
+        dbConnect.addReaction(mid, uid, reaction_code)
 
     channel = dbConnect.getChannelById(channel_id)
     messages = dbConnect.getMessageAll(channel_id)
@@ -196,10 +198,10 @@ def delete_message():
     if uid is None:
         return redirect('/login')
 
-    message_id = request.form.get('message_id')
+    mid = request.form.get('message_id')
     cid = request.form.get('channel_id')
-    if message_id:
-        dbConnect.deleteMessage(message_id)
+    if mid:
+        dbConnect.deleteMessage(mid)
 
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
