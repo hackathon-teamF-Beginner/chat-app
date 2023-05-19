@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+body{
+  position: relative;
+  background-image: url(../images/syoutenmaku.png);
+  color: #333333;
+  font-size: 16px;
+  font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
+  }
+
+main{
+    background-no-repeat: url(../images/kanban.png);
+}
+.image {
+  width: 300px; /* 好きな幅を指定 */
+  height: auto; /* 高さは自動調整されます */
+}
+
+.footer {
+  text-align: center;
+  color: #FFFFFF;
+}
