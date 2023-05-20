@@ -116,6 +116,8 @@
 .box-left {
   border: 1px solid var(--dark_pink);
   background-color: var(--baby_pink);
+  margin-right: 10px;
+
 }
 
 .box-right {
@@ -207,6 +209,11 @@
   position: fixed;
   bottom: 0;
   left: 20px;
+}
+
+#other-message-reactions{
+  width: 30px;
+  flex-direction: row;
 }
 
 @media screen and (max-width: 550px) {

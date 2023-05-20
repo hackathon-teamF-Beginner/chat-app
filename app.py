@@ -122,7 +122,8 @@ def update_channel():
     dbConnect.updateChannel(uid, channel_name, channel_description, cid)
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    reactions = dbConnect.getReactionAll(cid)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
 
 
 @app.route('/delete/<cid>')
@@ -150,8 +151,9 @@ def detail(cid):
     cid = cid
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
+    reactions = dbConnect.getReactionAll(cid)
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
 
 
 @app.route('/message', methods=['POST'])
@@ -168,9 +170,9 @@ def add_message():
 
     channel = dbConnect.getChannelById(channel_id)
     messages = dbConnect.getMessageAll(channel_id)
+    reactions = dbConnect.getReactionAll(channel_id)
     
-    
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
 
 @app.route('/reaction', methods=['POST'])
 def reaction():
@@ -187,8 +189,9 @@ def reaction():
 
     channel = dbConnect.getChannelById(channel_id)
     messages = dbConnect.getMessageAll(channel_id)
+    reactions = dbConnect.getReactionAll(channel_id)
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
 
 
 
@@ -205,8 +208,9 @@ def delete_message():
 
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
-
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    reactions = dbConnect.getReactionAll(cid)
+    
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
 
 
 @app.errorhandler(404)

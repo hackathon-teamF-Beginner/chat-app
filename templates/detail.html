@@ -28,89 +28,95 @@
                 <p class="my-user-name">{{ message.user_name }}</p>
                 <div class="my-messages-and-trash">
                   <p class="box box-right">{{ message.message_contents }}</p>
-                <form action="/delete_message" method="POST">
-                  <input type="hidden" value="{{ channel.id }}" name="channel_id" />
-                  <button
-                  class="delete-message-btn"
-                  name="message_id"
-                  value="{{ message.id }}"
-                  >
-                  <ion-icon name="trash-bin-outline"></ion-icon>
-                  </button>
-                </form>
-            </div>
-            <p class="my-send-time">{{ message.send_at }}</p>
-            <div>
-              <img src="{{ message.file_path }}" alt="" />
-            </div>
-          </div>
-          {% else %}
-          <div class="messages">
-            <p class="user-name">{{ message.user_name }}</p>
-                <p class="box box-left">{{ message.message_contents }}</p>
-                <p class="send-time">{{ message.send_at }}</p>
-                <div>
-                  <img src="{{ message.file_path }}" alt=""/>
+                  <form action="/delete_message" method="POST">
+                    <input type="hidden" value="{{ channel.id }}" name="channel_id" />
+                    <button
+                      class="delete-message-btn"
+                      name="message_id"
+                      value="{{ message.id }}"
+                      >
+                      <ion-icon name="trash-bin-outline"></ion-icon>
+                    </button>
+                  </form>
                 </div>
-                <form action="/reaction" method="POST">
-                  <input type="hidden" value="{{ channel.id }}" name="channel_id" />
-                  <input type="hidden" value="{{ message.id }}" name="message_id" />
-                  <button
-                  class="delete-message-btn"
-                  name="reaction_code"
-                  value=" 1 "
-                  >
-                  <ion-icon name="happy-outline"></ion-icon>
-                  </button>
-                </form>
-                <form action="/reaction" method="POST">
-                  <input type="hidden" value="{{ channel.id }}" name="channel_id" />
-                  <input type="hidden" value="{{ message.id }}" name="message_id" />
-                  <button
-                  class="delete-message-btn"
-                  name="reaction_code"
-                  value=" 2 "
-                  >
-                  <ion-icon name="happy-outline"></ion-icon>
-                  </button>
-                </form>
-                <form action="/reaction" method="POST">
-                  <input type="hidden" value="{{ channel.id }}" name="channel_id" />
-                  <input type="hidden" value="{{ message.id }}" name="message_id" />
-                  <button
-                  class="delete-message-btn"
-                  name="reaction_code"
-                  value=" 3 "
-                  >
-                  <ion-icon name="happy-outline"></ion-icon>
-                  </button>
-                </form>
-                <form action="/reaction" method="POST">
-                  <input type="hidden" value="{{ channel.id }}" name="channel_id" />
-                  <input type="hidden" value="{{ message.id }}" name="message_id" />
-                  <button
-                  class="delete-message-btn"
-                  name="reaction_code"
-                  value=" 4 "
-                  >
-                  <ion-icon name="happy-outline"></ion-icon>
-                  </button>
-                </form>
-                <form action="/reaction" method="POST">
-                  <input type="hidden" value="{{ channel.id }}" name="channel_id" />
-                  <input type="hidden" value="{{ message.id }}" name="message_id" />
-                  <button
-                  class="delete-message-btn"
-                  name="reaction_code"
-                  value=" 5 "
-                  >
-                  <ion-icon name="happy-outline"></ion-icon>
-                  </button>
-                </form>
+                <p class="my-send-time">{{ message.send_at }}</p>
+                <div>
+                  <img src="{{ file_path }}" alt="" />
+                </div>
               </div>
-             {% endif %}
+            {% else %}
+              <div class="messages">
+                <p class="user-name">{{ message.user_name }}</p>
+                <div class="my-messages-and-trash">
+                  <p class="box box-left">{{ message.message_contents }}</p>
+                  <form action="/reaction" method="POST">
+                    <input type="hidden" value="{{ channel.id }}" name="channel_id" />
+                    <input type="hidden" value="{{ message.id }}" name="message_id" />
+                    <button
+                      class="delete-message-btn"
+                      name="reaction_code"
+                      value=" 1 "
+                      >
+                      <ion-icon name="happy-outline"></ion-icon>
+                    </button>
+                  </form>
+                  <form action="/reaction" method="POST">
+                    <input type="hidden" value="{{ channel.id }}" name="channel_id" />
+                    <input type="hidden" value="{{ message.id }}" name="message_id" />
+                    <button
+                      class="delete-message-btn"
+                      name="reaction_code"
+                      value=" 2 "
+                      >
+                      <ion-icon name="happy-outline"></ion-icon>
+                    </button>
+                  </form>
+                  <form action="/reaction" method="POST">
+                    <input type="hidden" value="{{ channel.id }}" name="channel_id" />
+                    <input type="hidden" value="{{ message.id }}" name="message_id" />
+                    <button
+                      class="delete-message-btn"
+                      name="reaction_code"
+                      value=" 3 "
+                      >
+                      <ion-icon name="happy-outline"></ion-icon>
+                    </button>
+                  </form>
+                  <form action="/reaction" method="POST">
+                    <input type="hidden" value="{{ channel.id }}" name="channel_id" />
+                    <input type="hidden" value="{{ message.id }}" name="message_id" />
+                    <button
+                      class="delete-message-btn"
+                      name="reaction_code"
+                      value=" 4 "
+                      >
+                      <ion-icon name="happy-outline"></ion-icon>
+                    </button>
+                  </form>
+                  <form action="/reaction" method="POST">
+                    <input type="hidden" value="{{ channel.id }}" name="channel_id" />
+                    <input type="hidden" value="{{ message.id }}" name="message_id" />
+                    <button
+                      class="delete-message-btn"
+                      name="reaction_code"
+                      value=" 5 "
+                      >
+                      <ion-icon name="happy-outline"></ion-icon>
+                    </button>
+                  </form>
+                </div>
+                <p class="send-time">{{ message.send_at }}</p>
+              </div>
+              <div>
+                {% for reaction in reactions|reverse %}
+                  {% if reaction.id == message.id %}
+                  <img id="other-message-reactions" src="{{ reaction.file_path }}" alt="" />
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
           {% endfor %}
-          {% else %}
+        {% else %}
           <div><p>まだメッセージがありません</p></div>
         {% endif %}
       </div>
