@@ -167,12 +167,8 @@ def add_message():
 
     if message:
         dbConnect.createMessage(uid, channel_id, message)
-
-    channel = dbConnect.getChannelById(channel_id)
-    messages = dbConnect.getMessageAll(channel_id)
-    reactions = dbConnect.getReactionAll(channel_id)
-    
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
+ 
+    return redirect(url_for('result', channel_id=channel_id))
 
 @app.route('/reaction', methods=['POST'])
 def reaction():
@@ -183,15 +179,11 @@ def reaction():
     mid = request.form.get('message_id')
     reaction_code = request.form.get('reaction_code')
     channel_id =request.form.get('channel_id')
-    
-    if mid:
+    try:
         dbConnect.addReaction(mid, uid, reaction_code)
-
-    channel = dbConnect.getChannelById(channel_id)
-    messages = dbConnect.getMessageAll(channel_id)
-    reactions = dbConnect.getReactionAll(channel_id)
-
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
+        return redirect(url_for('result', channel_id=channel_id))
+    except:
+        return redirect(url_for('result', channel_id=channel_id))
 
 
 
@@ -212,6 +204,17 @@ def delete_message():
     
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
 
+@app.route('/result/<channel_id>')
+def result(channel_id):
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+    
+    channel = dbConnect.getChannelById(channel_id)
+    messages = dbConnect.getMessageAll(channel_id)
+    reactions = dbConnect.getReactionAll(channel_id)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
 
 @app.errorhandler(404)
 def show_error404(error):

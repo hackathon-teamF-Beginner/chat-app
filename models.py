@@ -1,6 +1,7 @@
 import pymysql
 import datetime
 from util.DB import DB
+from psycopg2 import IntegrityError
 
 class dbConnect:
     def createUser(user):
@@ -182,6 +183,9 @@ class dbConnect:
             sql = "INSERT INTO T_REACTION(mid, uid, reaction_code) VALUES(%s, %s, %s)"
             cur.execute(sql, (mid, uid, reaction_code))
             conn.commit()
+        except IntegrityError as e:
+            print(e + '一意制約違反')
+            return None
         except Exception as e:
             print(e + 'が発生しています')
             return None

@@ -38,10 +38,11 @@ CREATE TABLE T_MESSAGE (
 );
 
 CREATE TABLE T_REACTION (
-    id serial PRIMARY KEY,
+    id serial,
     mid integer REFERENCES T_MESSAGE(id) ON DELETE CASCADE,
     uid varchar(255) REFERENCES M_USER(id),
-    reaction_code varchar(255)
+    reaction_code varchar(255),
+    PRIMARY KEY (mid, uid, reaction_code)
 );
 
 CREATE TABLE M_REACTION (
