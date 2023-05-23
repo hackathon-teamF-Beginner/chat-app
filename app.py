@@ -168,7 +168,19 @@ def add_message():
     if message:
         dbConnect.createMessage(uid, channel_id, message)
  
-    return redirect(url_for('result', channel_id=channel_id))
+    return redirect(url_for('message_result', channel_id=channel_id))
+
+@app.route('/message_result/<channel_id>')
+def message_result(channel_id):
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+    
+    channel = dbConnect.getChannelById(channel_id)
+    messages = dbConnect.getMessageAll(channel_id)
+    reactions = dbConnect.getReactionAll(channel_id)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
 
 @app.route('/reaction', methods=['POST'])
 def reaction():
