@@ -7,6 +7,17 @@ body{
   font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
   }
   
+div#preview{
+    height: 200px;
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+    
+   }
+
 h1{
   color: #FFFFFF;
   text-align: center;

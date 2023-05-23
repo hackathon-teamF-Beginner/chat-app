@@ -13,10 +13,10 @@
   <div>
     <main>  
   <p class="iconadd">
-   <p></p>
-   <p> <img src="images/icon.png" alt="アイコン画像" class="icon"></p>
-   <p> <img src="images/select.png" alt="画像選択はこちら" class="select"></p>
-  </p>
+   <p> <div id="preview"></div>
+   </p>
+   <p> <input type="file" id="example" multiple></p>
+    </p>
    </main> 
    <aside>
   <p class="add">
@@ -25,12 +25,44 @@
      <p><input type="text" name="title"></p>
   <h2>本文記入</h2>
      <p><textarea name="channel"></textarea></p>
-     <p><input type="submit" value="チャンネルを投稿する"></p>
+     <p><input type="submit" value="投稿内容確認画面へ"></p>
    </form>    
   </aside> 
   </div>
     <footer>
       <p class="footer"><small>© 2023 Spring hackathon Team F</small></p>
     </footer>
+    <script>
+
+function previewFile(file) {
+  // プレビュー画像を追加する要素
+  const preview = document.getElementById('preview');
+
+  // FileReaderオブジェクトを作成
+  const reader = new FileReader();
+
+  // ファイルが読み込まれたときに実行する
+  reader.onload = function (e) {
+    const imageUrl = e.target.result; // 画像のURLはevent.target.resultで呼び出せる
+    const img = document.createElement("img"); // img要素を作成
+    img.src = imageUrl; // 画像のURLをimg要素にセット
+    preview.appendChild(img); // #previewの中に追加
+  }
+
+  // いざファイルを読み込む
+  reader.readAsDataURL(file);
+}
+
+
+// <input>でファイルが選択されたときの処理
+const fileInput = document.getElementById('example');
+const handleFileSelect = () => {
+  const files = fileInput.files;
+  for (let i = 0; i < files.length; i++) {
+    previewFile(files[i]);
+  }
+}
+fileInput.addEventListener('change', handleFileSelect);
+    </script>
   </body>
 </html>

@@ -24,11 +24,16 @@ input[type="text"]{
   padding: 12px 12px;
   flex-basis: content;
 }
+input[type="file"]{
+  color: #FFFFFF;
+}
+
 input[type="submit"],{
   background-color: #F44403;
   color: #FFFFFF;
   padding: 18px 80px;
 }
+
 
 .footer {
   text-align: center;
