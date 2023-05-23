@@ -228,6 +228,20 @@ def result(channel_id):
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
 
+@app.route('/search', methods=['POST'])
+def search(keyword):
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+    
+    keyword = request.form.get('keyword')
+    try:
+        dbConnect.searchMessages(keyword)
+        channels = dbConnect.getChannelAll()
+        return render_template('index.html', channels=channels, uid=uid, keyword=keyword)
+    except:
+        return render_template('index.html', channels=channels, uid=uid, keyword=keyword)
+
 @app.errorhandler(404)
 def show_error404(error):
     return render_template('error/404.html')
