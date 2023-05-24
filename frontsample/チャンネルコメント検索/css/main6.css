@@ -7,22 +7,40 @@ body{
   font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
   }
 
-main{
-    /* image 5 */
-
-position: absolute;
-width: 865px;
-height: 832px;
-left: 800px;
-top: 0px;
-bottom: 10px;
- background-image: url(../images/image5.png);
- background-repeat: no-repeat;
+div {
+  width: 1240px;
+  margin: 0 auto 50px;
+  display: flex;
+  justify-content: space-between;
 }
-  
-.footer {
-  clear: both;
-  bottom: 0; /*下に固定*/
+h1{
+text-align: center;
+color: #FFFFFF;
+}
+  main{
+  flex-basis: 284px;
+  color: #FFFFFF;
+  }
+  aside{
+  flex-basis: 750px;
+  background-color: antiquewhite; 
+  border-radius: 16px;
+  padding: 32px 72px 32px 72px;
+  color: blue;
+  }
+.channelNav {
+  color: blue;
+  list-style-type: disc;
+  margin: 0 0 16px 20px;
+}
+.comentsNav {
+  color: darkcyan;
+  list-style-type: disc;
+  margin: 0 0 16px 20px;
+}
+
+.footer { 
+  bottom: 10px; /*下に固定*/
   text-align: center;
   color: #FFFFFF;
 }
