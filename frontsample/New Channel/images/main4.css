@@ -6,34 +6,48 @@ body{
   font-size: 16px;
   font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
   }
-  form{
+  
+div#preview{
+    height: 200px;
+    width: 200px;
+    margin: auto;
     text-align: center;
-  }
-h1,h2{
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+    
+   }
+
+h1{
   color: #FFFFFF;
   text-align: center;
-  }
+    font-size: 36px;
+}
+h2{
+  color: #FFFFFF;
+  text-align: center;
+    font-size: 16px;
+}
+form{
+  color: #FFFFFF;
+  text-align: center;
+}
 input[type="email"],
 input[type="text"]{
   width: 500px;
   font-size: 18px;
-  margin: 0px auto 20px;
+  margin: 0px auto 10px;
   list-style-type: none;
   border-radius: 16px;
   background-color: #ffffff;
   padding: 12px 12px;
   flex-basis: content;
 }
-input[type="file"]{
-  color: #FFFFFF;
-}
-
-input[type="submit"],{
+input[type="submit"]{
   background-color: #F44403;
   color: #FFFFFF;
   padding: 18px 80px;
 }
-
 
 .footer {
   text-align: center;
