@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main4.css">
+    <title>新規登録</title>
+  </head>
+  <body> 
+    <form action="" method="">  
+      <h1>新規登録</h1>
+      <h2>アカウントアイコン選択</h2>
+      <p class="iconadd">
+        <p> <div id="preview"></div></p>
+        <p> <input type="file" id="example" multiple></p>    
+      <h2>ニックネーム</h2>      
+        <p class="name"><input type="text" name="user mail"></p>
+      <h2>メールアドレス</h2>  
+        <p class="email"><input type="email" name="passward"></p>
+      <h2>パスワード（１２文字以上）</h2>      
+        <p class="email"><input type="email" name="user mail"></p>
+      <h2>パスワード（確認用）</h2>  
+        <p class="pass"><input type="text" name="passward"></p>          
+        <p><input type="submit" value="決定"></p>
+      </form> 
+    <footer>
+      <p class="footer"><small>© 2023 Spring hackathon Team F</small></p>
+    </footer>
+    <script>
+
+      function previewFile(file) {
+        // プレビュー画像を追加する要素
+        const preview = document.getElementById('preview');
+      
+        // FileReaderオブジェクトを作成
+        const reader = new FileReader();
+      
+        // ファイルが読み込まれたときに実行する
+        reader.onload = function (e) {
+          const imageUrl = e.target.result; // 画像のURLはevent.target.resultで呼び出せる
+          const img = document.createElement("img"); // img要素を作成
+          img.src = imageUrl; // 画像のURLをimg要素にセット
+          preview.appendChild(img); // #previewの中に追加
+        }
+      
+        // いざファイルを読み込む
+        reader.readAsDataURL(file);
+      }
+      
+      
+      // <input>でファイルが選択されたときの処理
+      const fileInput = document.getElementById('example');
+      const handleFileSelect = () => {
+        const files = fileInput.files;
+        for (let i = 0; i < files.length; i++) {
+          previewFile(files[i]);
+        }
+      }
+      fileInput.addEventListener('change', handleFileSelect);
+          </script>
+  </body>
+</html>
