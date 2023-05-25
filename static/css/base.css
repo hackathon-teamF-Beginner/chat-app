@@ -21,7 +21,7 @@ img {
 
 h1 {
   font-size: 40px;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 input,
@@ -90,12 +90,17 @@ button.pink:hover {
   background-color: var(--middle_pink);
 }
 
-button.green {
-  background-color: var(--tiffany_green);
+button.login {
+  background-color: #edf04d;
+  color: #000000;
+  padding: 18px 20px;
+  border-radius: 4px;
+  width: 150px;
+  margin-left: 55%;
 }
 
-button.green:hover {
-  background-color: var(--middle_green);
+button.login:hover {
+  background-color:aqua;
 }
 
 .text-pink {

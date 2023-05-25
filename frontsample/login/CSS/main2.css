@@ -28,7 +28,7 @@ input[type="file"]{
   color: #FFFFFF;
 }
 
-input[type="submit"],{
+input[type="submit"]{
   background-color: #F44403;
   color: #FFFFFF;
   padding: 18px 80px;
