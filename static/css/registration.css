@@ -1,5 +1,5 @@
 .registration-wrapper.signup {
-  background-color: var(--baby_pink);
+  background-image: url("../img/syoutenmaku.png");
 }
 .registration-wrapper.login {
   background-image: url("../img/syoutenmaku.png");
@@ -8,7 +8,7 @@
 .registration-main {
   height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   background-size: cover;
   font-family: "Kanit", sans-serif;
   line-height: 1em;
@@ -65,7 +65,7 @@
   color: rgb(255, 255, 255);
   font-size: 35px;
   margin-bottom: 0;
-  margin-top: -20px;
+  margin-top: -40px;
   text-align: center;
 
 }
@@ -84,6 +84,9 @@
   background-color: #ffffff;
   padding: 0px 12px;
   flex-basis: content;
+}
+.registration-form.first {
+  margin-top: -35px; /* adjust this value as needed */
 }
 
 .registration-form input {
@@ -109,31 +112,39 @@ button {
   margin-right: 0;
 }
 
-.switch-register-mode {
+.switch-register-mode.login {
   color: rgb(222, 221, 221);
   font-weight: 10;
   line-height: 30px;
   font-size: smaller;
   padding-bottom: 1px;
   margin-left: 55%;
-  width: 160px;
+  width: 150px;
+  text-align: center;
+}
+.switch-register-mode.signup{
+  color: rgb(222, 221, 221);
+  font-weight: 10;
+  line-height: 30px;
+  font-size: smaller;
+  padding-bottom: 0px;
+  margin-left: 50%;
+  width: 260px;
   text-align: center;
 }
 
 .switch-register-mode:hover {
-  color: var(--carbon);
-  border-bottom: 1px solid var(--carbon);
-  padding-bottom: 0;
+  color: #09eaf2;
+  border-bottom: 1px solid #09eaf2;
+  padding-bottom: 0px;
 }
 
 .flashes {
   line-height: 40px;
-  margin-top: 0;
+  margin-top: -5px;
   font-weight: 50;
   position: relative;
-  right: 40px;
   text-shadow: -1px 0 rgb(255, 255, 255), 0 1px rgb(255, 255, 255), 1px 0 rgb(255, 255, 255), 0 -1px rgb(255, 255, 255);
-
   text-align: center;
   font-size: 18px;
   color: red;
@@ -153,7 +164,7 @@ button {
 
 
 img{
-  width: 15%;
+  width: 14%;
   display: block;
   margin-left: auto;
   margin-right: auto;

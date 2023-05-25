@@ -4,20 +4,26 @@
 {% endblock %}
 {% block body %}
   <div class="registration-wrapper signup">
-    <div class="registration-main signup-main">
-      SIGNUP
-      <div class="half-circle pink">
-        <form class="registration-form" method="post">
-          <h1 class="registration-title">SIGN UP</h1>
-          <input type="text" placeholder="Name" name="name" />
-          <input type="text" placeholder="Email" name="email" />
-          <input type="password" placeholder="Password" name="password1" />
-          <input
-            type="password"
-            placeholder="Password Confirmation"
-            name="password2"
-          />
-          <button class="pink">SIGN UP</button>
+    <div class="registration-main">
+      <img src="../../static/img/applogo.png"/>
+      <form class="column" method="post">
+        <h1 class="registration-title">新規登録</h1>
+        <div class="registration-form first">
+          <input type="text" placeholder="ニックネーム" name="name" />
+        </div>
+        <div class="registration-form">
+          <input type="text" placeholder="メールアドレス" name="email" />
+        </div>
+        <div class="registration-form">
+          <input type="password" placeholder="パスワード（８文字以上）" name="password1" />
+        </div>
+        <div class="registration-form">
+          <input type="password" placeholder="パスワード（確認用）" name="password2"/>
+        </div>
+        <button class="signup">SIGN UP</button>
+        <a class="switch-register-mode signup" href="{{ url_for('login') }}">
+        アカウントをお持ちの方はこちら
+        </a>
           {% with messages = get_flashed_messages() %}
             {% if messages %}
               <ul class="flashes">
@@ -27,11 +33,7 @@
               </ul>
             {% endif %}
           {% endwith %}
-          <a class="switch-register-mode" href="{{ url_for('login') }}">
-          Already have an account?
-          </a>
-        </form>
-      </div>
+      </form>
     </div>
   </div>
 {% endblock %}
