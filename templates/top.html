@@ -1,0 +1,14 @@
+{% extends 'registration/base.html' %}
+{% block title %}
+  <title>login</title>
+{% endblock %}
+{% block body %}
+  <div class="registration-wrapper login">
+    <div class="registration-main">
+      <img class="top-logo" src="..//static/img/applogo.png"/>
+      <a class="registor-login"  href="{{ url_for('login') }}">　</a>
+      <a class="registor-signup" href="{{ url_for('signup') }}">　</a>
+      <div class="top-message">You, who have come seeking niche information about niche products, are also a niche person yourself.</div>
+    </div>
+  </div>
+{% endblock %}

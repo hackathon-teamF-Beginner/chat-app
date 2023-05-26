@@ -170,3 +170,44 @@ img{
   margin-right: auto;
 
 }
+.top-logo{
+  width: 25%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.registor-login{
+  background-image: url(../img/login_btn.png);
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20%;
+  height: 9%;
+  border-radius: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 30px;
+
+}
+.registor-signup{
+  background-image: url(../img/signup_btn.png);
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20%;
+  height: 9%;
+  border-radius: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 30px;
+
+}
+
+.top-message{
+  color: white;
+  text-align: center;
+}
