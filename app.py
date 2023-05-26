@@ -88,11 +88,10 @@ def index():
     uid = session.get("uid")
     if uid is None:
         return render_template('top.html')
-        
     else:
-        return render_template('top.html')
-        
+        channels = dbConnect.getChannelAll()
 
+    return render_template('index.html', channels=channels, uid=uid)
 
 
 @app.route('/', methods=['POST'])
