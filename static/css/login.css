@@ -60,13 +60,13 @@ background: #E8E5E5;
   margin: 10px 10px 10px 10px;
 }
 input[type="file"]{
-  color: #ffffff;
+  color: #aaffff;
 }
 input[type="text"] {  
   width: 480px;
   font-size: 18px;
   border-radius: 16px;
-  background-color: #ffffff;
+  background-color: #ffafff;
   padding: 12px 12px;  
   }
 
@@ -75,7 +75,7 @@ textarea {
   height: 200px;
   font-size: 18px;
   border-radius: 16px;
-  background-color: #ffffff;
+  background-color: #ffafaf;
   padding: 12px 12px;
   }
 
@@ -83,7 +83,7 @@ input[type="submit"] {
 width: 150px;
 }
 img{
-  width: 180px;
+  width: 90px;
   height:150px
 }
 

@@ -83,3 +83,4 @@ for(let i = 0; i < reactionOptions.length; i++) {
 reactionModal.addEventListener('mouseleave', function() {
   reactionModal.style.display = 'none';
 });
+

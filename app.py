@@ -90,6 +90,7 @@ def index():
         return redirect('/login')
     else:
         channels = dbConnect.getChannelAll()
+
     return render_template('index.html', channels=channels, uid=uid)
 
 
@@ -165,7 +166,7 @@ def add_message():
     message = request.form.get('message')
     channel_id =request.form.get('channel_id')
 
-    if message:
+    if message.strip():
         dbConnect.createMessage(uid, channel_id, message)
  
     return redirect(url_for('message_result', channel_id=channel_id))
@@ -229,18 +230,22 @@ def result(channel_id):
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, reactions=reactions)
 
 @app.route('/search', methods=['POST'])
-def search(keyword):
+def search():
     uid = session.get("uid")
     if uid is None:
         return redirect('/login')
     
     keyword = request.form.get('keyword')
-    try:
-        dbConnect.searchMessages(keyword)
+    if keyword.strip():
+        search_C_name, search_message = dbConnect.searchMessages(keyword)
         channels = dbConnect.getChannelAll()
-        return render_template('index.html', channels=channels, uid=uid, keyword=keyword)
-    except:
-        return render_template('index.html', channels=channels, uid=uid, keyword=keyword)
+        print(search_C_name, search_message)
+        return render_template('index.html', channels=channels, uid=uid, search_C_name=search_C_name, search_message=search_message)
+    else:
+        channels = dbConnect.getChannelAll()
+        return render_template('index.html', channels=channels, uid=uid)
+
+
 
 @app.errorhandler(404)
 def show_error404(error):

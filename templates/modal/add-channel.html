@@ -1,27 +1,23 @@
 <div id="add-channel-modal" class="modal">
   <div class="modal-content">
-    <div class="modal-header">
-      <h5>チャンネルを追加</h5>
-      <img
-        src="{{ url_for('static',filename='img/cat-on-bar.gif') }}"
-        class="modal-gif"
-      />
-      <span class="modalClose" id="add-page-close-btn">×</span>
-    </div>
+
     <form class="modal-body" action="/" method="POST">
+        <div class="modalClose" id="add-page-close-btn">×</div>
+
+
       <input
         type="text"
-        placeholder="チャンネル名"
-        class="channel-form-input"
+        placeholder="タイトル（メーカーと商品名、型番など）"
+        class="channel-form-input-title"
         name="channel-title"
       />
       <input
         type="text"
-        placeholder="チャンネルの説明"
-        class="channel-form-input"
+        placeholder="このチャンネルの説明を記入してください"
+        class="channel-form-input-abstract"
         name="channel-description"
       />
-      <button id="add-channel-confirmation-btn">登録</button>
+      <button class="add-btn" id="add-channel-confirmation-btn">チャンネル登録</button>
     </form>
   </div>
 </div>
