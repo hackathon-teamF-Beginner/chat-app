@@ -222,22 +222,19 @@ class dbConnect:
 
     def searchMessages(keyword):
         try:
-            conn = DB.getConnection ()
-            cur = conn. cursor ( )
-            sql = "SELECT * FROM T_MESSAGE WHERE message_contents LIKE %s"
-            cur. execute(sql, ('%' + keyword + '%' ))
-            results = cur. fetchall()
-            if results:
-                for row in results:
-                    print("Message ID:", row [0])
-                    print("User ID:", row[1])
-                    print("Channel ID:", row [2])
-                    print("Message Contents:", row [3])
-                    print("Sent At:", row [4])
-                    print("--------------------")
-                else:
-                    print ("No messages found.")
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql1 = "SELECT * FROM T_CHANNEL where name LIKE %s;"
+            cur.execute(sql1, ('%' + keyword + '%'))
+            search_C_name = cur.fetchall()
+
+            sql2 = "SELECT TC.name, TM.message_contents, TM.cid FROM T_CHANNEL as TC INNER JOIN T_MESSAGE as TM ON TC.id=TM.cid WHERE TM.message_contents LIKE %s;"
+            cur.execute(sql2, ('%' + keyword + '%'))
+            search_message = cur.fetchall()
+
+            return search_C_name, search_message
         except Exception as e:
             print ("An error occurred:", e)
+            return None
         finally:
-            cur.close ()
+            cur.close()

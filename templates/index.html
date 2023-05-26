@@ -3,24 +3,57 @@
   <title>home</title>
 {% endblock %}
 {% block body %}
-  <div class="main-container channelpage">
-    <img src="{{ url_for('static',filename='img/cat-gif-unscreen.gif') }}" id="gif" />
-    <div class="bg-img"></div>
-    <div class="main-content">
-        <div class="channel-title">
-        <h1>チャンネル一覧</h1>
-        <button id="add-channel-btn">チャンネル追加</button>
+
+    <div class="split-container">
+      <div class="split-item">
+        <form action="/search" method="post">
+          <div class="search-submit">
+            <input
+            type="text"
+            placeholder="チャンネルやメッセージを検索できます"
+            class="search-by-word"
+            name="keyword"
+            />
+            <button id="search-by-word-btn" >検索</button>
+          </form>
+          </div>
+          <div class="search-result-box">
+            <p class="search-result-box-header">チャンネル</p>
+            {% for search_result in search_C_name %}
+              <p><a class="search-result-link" href="/detail/{{ search_result.id }}" >{{ search_result.name }}</p></a>
+            {% endfor %}
+          </div>
+          <div class="search-result-box">
+            <p class="search-result-box-header">メッセージ</p>
+            <div class="col">
+              {% for search_result in search_message %}
+                <div class="row">
+                  <a href="/detail/{{ search_result.cid }}">
+                  <p class="search-result-link">{{ search_result.message_contents }}...({{ search_result.name }})</p>
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+       
       </div>
-      <div class="pagination-container">
-        <p id="prev"><</li>
-          <ul class="pagination"></ul>
-          <p id="next">></p>
+      
+      <div class="split-item">
+        <div class="channel-title">
+          <h1>チャンネル一覧</h1>
         </div>
-        <ul class="channel-box"></ul>
-        {% include 'modal/add-channel.html' %}
-        {% include 'modal/delete-confirmation.html' %}
+          <div class="channel-box"></div>
+          {% include 'modal/add-channel.html' %}
+          {% include 'modal/delete-confirmation.html' %}
+          <div class="pagination-container">
+            <p id="prev"><</li>
+            <ul class="pagination"></ul>
+            <p id="next">></p>
+          </div>
+          <button class="add-channel-button" id="add-channel-btn">➕チャンネル追加</button>
       </div>
     </div>
+
 {% endblock %}
 {% block script %}
   <script type="text/javascript">

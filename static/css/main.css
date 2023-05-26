@@ -1,7 +1,111 @@
 .channelpage {
-  display: flex;
-  flex-direction: column;
+  background-image: url("../img/syoutenmaku.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  
 }
+.split-container {
+  background-image: url("../img/syoutenmaku.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;  /* Flexboxを有効にする */
+  height: 100vh;  /* ビューポートの高さと同じにする */
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+
+  padding-left: 9%;
+
+}
+
+.search-by-word {
+  width: 82%;
+  height: 50px;
+  font-size: 15px;
+  border-radius: 8px 0px 0px 8px;
+  background-color: #ffffff;
+  padding: 12px 12px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+}
+
+.split-item:first-child {
+  box-sizing: border-box;  /* paddingやborderが全体の幅・高さに含まれるように設定 */
+  flex-direction: column;
+  flex: 3;  /* 全体の1/3を占めるように設定 */
+  
+}
+
+.split-item:last-child {
+  box-sizing: border-box;  /* paddingやborderが全体の幅・高さに含まれるように設定 */
+  flex-direction: column;
+  flex: 5;  /* 全体の2/3を占めるように設定 */
+  background-image: url("../img/mekuri.png");
+  background-size: cover;
+  background-repeat:repeat;
+  height: 100vh;
+  padding-left: 10%;
+  padding-right: 5%;
+}
+
+#search-by-word-btn {
+  width: 58px;
+  height: 50px;
+  font-size: 12px;
+  float: right;/*bms_sendに対して右寄せ*/
+  color: #fff;
+  font-weight: bold;
+  background: #838383;
+  text-align: center;/*文字をボタン中央に表示*/
+  border: 1px solid black;
+  border-radius: 0px 8px 8px 0px;/*角丸*/
+  box-sizing: border-box;/*paddingとborderの要素の高さと幅の影響をなくす（要素に高さと幅を含める）*/
+  margin-left: -1px;
+
+}
+#search-by-word-btn:hover {
+background: #4393df; /*マウスポインタを当てた時にアクティブな色になる*/
+cursor: pointer;/*マウスポインタを当てた時に、カーソルが指の形になる*/
+}
+.search-result-box-header{
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.search-result-link{
+  color: blue;
+}
+.search-result-link:hover{
+
+  border-bottom: 1px solid blue;
+}
+
+
+.search-submit{
+  flex-direction: row;
+  display: flex;
+}
+
+.search-result-box {
+  border-radius: 14px;
+  padding: 10px;
+
+  width: 95%;
+  height: 300px;
+  overflow: auto;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  border-right: 2px solid #ddd;
+  border-left: 2px solid #ddd;
+  background-color: #eee;
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2) inset;/*ヘッダーの下に影を入れる*/
+  margin-top: 20px;
+}
+
+
 
 .bg-img {
   position: absolute;
@@ -46,6 +150,7 @@
 .channel-title {
   display: flex;
   gap: 24px;
+
 }
 
 .channel-title button {
@@ -57,14 +162,22 @@
   background-color: var(--carbon);
 }
 
+.add-channel-button{
+  background-color: #ff8002;
+  color: #000000;
+  padding: 18px 20px;
+  border-radius: 4px;
+  width: 50%;
+  margin-left: 25%;
+
+}
 .channel-box {
-  background-color: transparent;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  width: 100%;
   min-height: 50%;
-  display: flex;
+
   flex-direction: column;
   padding: 1rem;
+  margin-left: 5%;
 }
 
 .channel-box li {
@@ -72,9 +185,9 @@
   margin-bottom: 5px;
   padding-bottom: 3px;
   padding-right: 16px;
-  box-sizing: border-box;
+  box-sizing:content-box;
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
   align-items: center;
 }
 
@@ -101,8 +214,7 @@
 
 .pagination-container {
   width: 100%;
-  border-bottom: 2px solid var(--grey);
-  box-shadow: 0 32px 30px -30px var(--wood);
+
 }
 
 .pagination {

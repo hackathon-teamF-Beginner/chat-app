@@ -106,6 +106,13 @@ button.signup {
   width: 150px;
   margin-left: 55%;
 }
+button.add-btn{
+  color: #000000;
+
+  border-radius: 4px;
+
+
+}
 
 button.login:hover {
   background-color:aqua;
