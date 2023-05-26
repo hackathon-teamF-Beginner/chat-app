@@ -219,3 +219,25 @@ class dbConnect:
             return None
         finally:
             cur.close()
+
+    def searchMessages(keyword):
+        try:
+            conn = DB.getConnection ()
+            cur = conn. cursor ( )
+            sql = "SELECT * FROM T_MESSAGE WHERE message_contents LIKE %s"
+            cur. execute(sql, ('%' + keyword + '%' ))
+            results = cur. fetchall()
+            if results:
+                for row in results:
+                    print("Message ID:", row [0])
+                    print("User ID:", row[1])
+                    print("Channel ID:", row [2])
+                    print("Message Contents:", row [3])
+                    print("Sent At:", row [4])
+                    print("--------------------")
+                else:
+                    print ("No messages found.")
+        except Exception as e:
+            print ("An error occurred:", e)
+        finally:
+            cur.close ()

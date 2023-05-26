@@ -58,3 +58,28 @@ function outsideClose(e) {
     deleteChannelModal.style.display = "none";
   }
 }
+
+
+
+const reactionButton = document.getElementById('reaction-button');
+const reactionModal = document.getElementById('reaction-modal');
+const reactionOptions = document.getElementsByClassName('reaction-option');
+
+// Show the modal when hovering over the reaction button
+reactionButton.addEventListener('mouseover', function() {
+  reactionModal.style.display = 'block';
+});
+
+// Hide the modal when a reaction is chosen
+for(let i = 0; i < reactionOptions.length; i++) {
+  reactionOptions[i].addEventListener('click', function() {
+    reactionModal.style.display = 'none';
+    // You can also do something with the chosen reaction here
+    console.log("Reaction chosen: " + this.textContent);
+  });
+}
+
+// Optionally, you could also hide the modal when the mouse leaves the modal area
+reactionModal.addEventListener('mouseleave', function() {
+  reactionModal.style.display = 'none';
+});

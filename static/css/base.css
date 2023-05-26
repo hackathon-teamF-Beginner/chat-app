@@ -1,8 +1,8 @@
 * {
   float: none;
   position: static;
-  font-family: "Sawarabi Mincho", serif;
-  font-family: "DotGothic16", sans-serif;
+  font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
+  font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
   font-size: 20px;
   box-sizing: border-box;
 }
@@ -27,19 +27,20 @@ h1 {
 input,
 textarea,
 button {
-  font-family: inherit;
+  font-family:'arial','Hiragino Sans','Meiryo',sans-serif;
   font-size: inherit;
   border: none;
+  letter-spacing: 0.0em;
   outline: none;
 }
 
-textarea {
+/* textarea {
   resize: none;
   height: 100%;
   width: 100%;
   letter-spacing: 0.1em;
   font-size: 16px;
-}
+} */
 
 input {
   letter-spacing: 0.1em;
@@ -59,13 +60,13 @@ button:hover {
   cursor: pointer;
 }
 
-button {
+/* button {
   color: var(--snow);
   border: none;
   border-radius: 999px;
   padding: 0.5em 3em;
   margin: 16px auto;
-}
+} */
 
 .basic-btn {
   background-color: var(--navy);
