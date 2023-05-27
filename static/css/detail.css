@@ -124,6 +124,36 @@
   right: 8px;
 
 }
+.reaction-btn.good{
+  background-image: url(../reaction_icons/good.png);
+  background-size:contain;
+  background-repeat: no-repeat;
+
+}
+.reaction-btn.look{
+  background-image: url(../reaction_icons/look.png);
+  background-size:contain;
+  background-repeat: no-repeat;
+
+}
+.reaction-btn.love{
+  background-image: url(../reaction_icons/love.png);
+  background-size:contain;
+  background-repeat: no-repeat;
+
+}
+.reaction-btn.pray{
+  background-image: url(../reaction_icons/pray.png);
+  background-size:contain;
+  background-repeat: no-repeat;
+
+}
+.reaction-btn.smile{
+  background-image: url(../reaction_icons/smile.png);
+  background-size:contain;
+  background-repeat: no-repeat;
+
+}
 
 
 .delete-message-btn ion-icon {

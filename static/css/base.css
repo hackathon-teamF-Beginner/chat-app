@@ -69,16 +69,18 @@ button:hover {
 } */
 
 .basic-btn {
-  background-color: var(--navy);
+  background-color: white;
+  border: solid 1px black;
 }
 
 .basic-btn:hover {
-  background-color: var(--carbon);
+  background-color: red;
+  color: white;
 }
 
 .smaller-btn {
   margin: 0;
-  padding: 0.2em 3em;
+  padding: 0.2em 1em;
   font-size: 16px;
 }
 

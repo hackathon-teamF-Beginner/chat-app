@@ -87,7 +87,7 @@ def logout():
 def index():
     uid = session.get("uid")
     if uid is None:
-        return redirect('/login')
+        return render_template('top.html')
     else:
         channels = dbConnect.getChannelAll()
 
