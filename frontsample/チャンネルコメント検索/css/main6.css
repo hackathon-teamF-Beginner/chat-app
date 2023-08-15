@@ -1,0 +1,46 @@
+@charset "utf-8";
+body{
+  position: relative;
+  background-image: url(../images/syoutenmaku.png);
+  color: #333333;
+  font-size: 16px;
+  font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
+  }
+
+div {
+  width: 1240px;
+  margin: 0 auto 50px;
+  display: flex;
+  justify-content: space-between;
+}
+h1{
+text-align: center;
+color: #FFFFFF;
+}
+  main{
+  flex-basis: 284px;
+  color: #FFFFFF;
+  }
+  aside{
+  flex-basis: 750px;
+  background-color: antiquewhite; 
+  border-radius: 16px;
+  padding: 32px 72px 32px 72px;
+  color: blue;
+  }
+.channelNav {
+  color: blue;
+  list-style-type: disc;
+  margin: 0 0 16px 20px;
+}
+.comentsNav {
+  color: darkcyan;
+  list-style-type: disc;
+  margin: 0 0 16px 20px;
+}
+
+.footer { 
+  bottom: 10px; /*下に固定*/
+  text-align: center;
+  color: #FFFFFF;
+}

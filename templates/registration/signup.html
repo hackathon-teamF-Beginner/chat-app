@@ -1,0 +1,39 @@
+{% extends 'registration/base.html' %}
+{% block title %}
+  <title>signup</title>
+{% endblock %}
+{% block body %}
+  <div class="registration-wrapper signup">
+    <div class="registration-main">
+      <img src="../../static/img/applogo.png"/>
+      <form class="column" method="post">
+        <h1 class="registration-title">新規登録</h1>
+        <div class="registration-form first">
+          <input type="text" placeholder="ニックネーム" name="name" />
+        </div>
+        <div class="registration-form">
+          <input type="text" placeholder="メールアドレス" name="email" />
+        </div>
+        <div class="registration-form">
+          <input type="password" placeholder="パスワード（８文字以上）" name="password1" />
+        </div>
+        <div class="registration-form">
+          <input type="password" placeholder="パスワード（確認用）" name="password2"/>
+        </div>
+        <button class="signup">SIGN UP</button>
+        <a class="switch-register-mode signup" href="{{ url_for('login') }}">
+        アカウントをお持ちの方はこちら
+        </a>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul class="flashes">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endwith %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

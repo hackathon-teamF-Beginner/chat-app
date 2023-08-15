@@ -1,0 +1,142 @@
+* {
+  float: none;
+  position: static;
+  font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
+  font-family: 'arial','Hiragino Sans','Meiryo',sans-serif;
+  font-size: 20px;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  min-height: 100vh;
+  width: 100vw;
+  color: var(--carbon);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+input,
+textarea,
+button {
+  font-family:'arial','Hiragino Sans','Meiryo',sans-serif;
+  font-size: inherit;
+  border: none;
+  letter-spacing: 0.0em;
+  outline: none;
+}
+
+/* textarea {
+  resize: none;
+  height: 100%;
+  width: 100%;
+  letter-spacing: 0.1em;
+  font-size: 16px;
+} */
+
+input {
+  letter-spacing: 0.1em;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--snow);
+}
+
+input:hover,
+button:hover {
+  cursor: pointer;
+}
+
+/* button {
+  color: var(--snow);
+  border: none;
+  border-radius: 999px;
+  padding: 0.5em 3em;
+  margin: 16px auto;
+} */
+
+.basic-btn {
+  background-color: white;
+  border: solid 1px black;
+}
+
+.basic-btn:hover {
+  background-color: red;
+  color: white;
+}
+
+.smaller-btn {
+  margin: 0;
+  padding: 0.2em 1em;
+  font-size: 16px;
+}
+
+button.pink {
+  background-color: var(--baby_pink);
+}
+
+button.pink:hover {
+  background-color: var(--middle_pink);
+}
+
+button.login {
+  background-color: #edf04d;
+  color: #000000;
+  padding: 18px 20px;
+  border-radius: 4px;
+  width: 150px;
+  margin-left: 55%;
+}
+button.signup {
+  background-color: #edf04d;
+  color: #000000;
+  padding: 18px 20px;
+  border-radius: 4px;
+  width: 150px;
+  margin-left: 55%;
+}
+button.add-btn{
+  color: #000000;
+
+  border-radius: 4px;
+
+
+}
+
+button.login:hover {
+  background-color:aqua;
+}
+button.signup:hover {
+  background-color:aqua;
+}
+
+.text-pink {
+  color: var(--baby_pink);
+}
+
+.text-green {
+  color: var(--tiffany_green);
+}
+
+.main-container {
+  min-height: 100vh;
+  padding-left: 70px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
